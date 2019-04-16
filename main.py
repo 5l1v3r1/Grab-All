@@ -25,15 +25,16 @@
 #  the PC.                                    |
 #----------------------------------------------
 
-import os, csv, sys, time, json
+import re, os, csv, sys, time, json, subprocess
 from sys import platform
+import usb.core
 
 if platform == "linux" or platform == "linux2":
-    theos = 'lin'
+    theos = 'linux'
 elif platform == "darwin":
     theos = 'osx'
 elif platform == "win32":
-    theos = 'win'
+    theos = 'windows'
 
 def clearscr():
     if theos == 'win':
@@ -53,14 +54,17 @@ if sys.version_info <= (3, 0):
 
 def fphone():
 
-    
-
-
+	print("Make sure to put on 'USB-Debugging' under DEV settings on the phone...")
+	if theos == 'win':
+		print("windows")
+	elif theos == 'lin':
+		print("linux")
 #  - - -   - - -   - - -   - - -   - - -   - - -   - - -   - - -  - - -   - - -   - - -   - - -
 
 print("[!] AG: Starting Android Grab...\n\n")
 time.sleep(2)
 
+print(theos)
 print('''
             - - - USB :: Phone [?] - - -
     
@@ -69,14 +73,22 @@ print('''
     3.)  Exit
 ''')
 
-while True:
-    usbdev = input("AG$> ")
-    if usbdev == '1':
-        fphone()
-    if usbdev == '2':
-        pass
-    if usbdev == '3':
-        sys.exit(1)
-    else:
-        print("AG: Unknown input {}".format(usbdev))
+#while True:
+#    usbdev = input("AG$> ")
+#    if usbdev == '1':
+#        fphone()
+#    if usbdev == '2':
+#        pass
+#    if usbdev == '3':
+#        sys.exit(1)
+#    else:
+#        print("AG: Unknown input {}".format(usbdev))
 
+usbdev = 'data123'
+data = b{
+	'{"usbhost":"{0}"}}'.format(usbdev),
+	'{"OS":"
+}
+
+with open('.rb/vars.json', 'w') as outfile:
+    json.dump(data, outfile)
